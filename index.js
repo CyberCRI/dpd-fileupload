@@ -67,7 +67,6 @@ Fileupload.prototype.handle = function (ctx, next) {
             remainingFile = 0,
             storedObject = {},
             uniqueFilename = false,
-            filename,
             subdir,
             creator;
 
@@ -101,10 +100,6 @@ Fileupload.prototype.handle = function (ctx, next) {
                     debug("uniqueFilename found: %j", req.query[propertyName]);
                     uniqueFilename = (req.query[propertyName] === 'true');
                     continue; // skip to the next param since we don't need to store this value
-                } else if( propertyName === 'project' ){
-                    filename = propertyName;
-                } else if( propertyName === 'challenge' ){
-                    filename = propertyName;
                 }
 
                 // Store any param in the object
@@ -119,7 +114,6 @@ Fileupload.prototype.handle = function (ctx, next) {
         form.uploadDir = uploadDir;
 
         var renameAndStore = function(file) {
-            file.name = filename;
             fs.rename(file.path, uploadDir + file.name, function(err) {
                 if (err) return processDone(err);
                 debug("File renamed after event.upload.run: %j", err || uploadDir + file.name);
