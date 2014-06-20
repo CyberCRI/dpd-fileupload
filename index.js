@@ -125,7 +125,7 @@ Fileupload.prototype.handle = function (ctx, next) {
                 storedObject.creationDate = new Date().getTime();
 
                 // Store MIME type in object
-                storedObject.mimeType = mime.lookup(file.name);
+                storedObject.type = mime.lookup(file.name);
 
                 self.store.insert(storedObject, function(err, result) {
                     if (err) return processDone(err);
