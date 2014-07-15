@@ -14,7 +14,7 @@
     "url": "https://github.com/NicolasRitouet/dpd-fileupload.git"
   },
   "engines": {
-    "node": "~0.8"
+    "node": "~10.29"
   },
   "license": "MIT",
   "bugs": {
